@@ -1,5 +1,6 @@
 import { Box, Card, Image, Text, Wrap } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Header } from "../../components/Header";
 import { ICharacter } from "../../interfaces/character.interface";
 import api from "../../services/api";
 
@@ -21,6 +22,7 @@ export function Home() {
         <Box
             bg='gray.100'
         >
+            <Header />
             <Box
                 width='1216px'
                 height='100vh'
@@ -30,6 +32,7 @@ export function Home() {
                     fontSize='3rem'
                     fontWeight='bold'
                     margin='40px 0'
+                    color='#040814'
                 >
                     Personagens
                 </Text>
