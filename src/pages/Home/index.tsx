@@ -38,39 +38,42 @@ export function Home() {
                     align='center'
                     width='100%'
                 >
-                    <Card
-                        borderRadius='8px'
-                    >
-                        <Box
-                            width='280px'
-                            height='280px'
-                            flexDirection='column'
-                            borderRadius='8px 8px 0 0'
+                    {characters.map((character, index) => (
+                        <Card
+                            borderRadius='8px'
+                            key={index}
                         >
-                            <Image
-                                src='https://github.com/ecthon.png'
-                                boxSize='full'
-                                objectFit='cover'
-                                borderRadius='8px 8px 0 0'    
-                            />
-                        </Box>
-                        <Box
-                            height='74px'
-                            padding='16px 20px'
-                        >
-                            <Text
-                                fontSize='12'
+                            <Box
+                                width='280px'
+                                height='280px'
+                                flexDirection='column'
+                                borderRadius='8px 8px 0 0'
                             >
-                                NOME
-                            </Text>
-                            <Text
-                                fontSize='1rem'
-                                fontWeight='medium'
+                                <Image
+                                    src={character.imageUrl}
+                                    boxSize='full'
+                                    objectFit='cover'
+                                    borderRadius='8px 8px 0 0'    
+                                />
+                            </Box>
+                            <Box
+                                height='74px'
+                                padding='16px 20px'
                             >
-                                Ecthon Borhis
-                            </Text>
-                        </Box>
-                    </Card>
+                                <Text
+                                    fontSize='12'
+                                >
+                                    NOME
+                                </Text>
+                                <Text
+                                    fontSize='1rem'
+                                    fontWeight='medium'
+                                >
+                                    {character.name}
+                                </Text>
+                            </Box>
+                        </Card>
+                    ))}
                 </Wrap>
             </Box>
         </Box>
