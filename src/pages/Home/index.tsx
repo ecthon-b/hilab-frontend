@@ -1,6 +1,22 @@
 import { Box, Card, Image, Text, Wrap } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { ICharacter } from "../../interfaces/character.interface";
+import api from "../../services/api";
 
 export function Home() {
+
+    const [characters, setCharacters] = useState<ICharacter[]>([]);
+
+    useEffect(() => {
+        getCharacters();
+    }, [])
+
+    async function getCharacters() {
+        const response = await api.get('characters');
+        const data = response.data.data;
+        console.log(data)
+        setCharacters(data);
+    }
     return (
         <Box
             bg='gray.100'
