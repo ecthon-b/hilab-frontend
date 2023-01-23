@@ -1,4 +1,5 @@
 import { Box, Flex, Image, Link } from "@chakra-ui/react";
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
     return (
@@ -22,20 +23,22 @@ export function Header() {
                 />
 
                 <Flex as='nav'>
-                    <Link
-                        href="#"
-                        padding='0 16px'
-                        fontSize='1.175rem'
-                        fontWeight='medium'
-                        textDecor='none'
-                        color='#FFF'
-                        transition=' color 0.3s'
-                        _hover={{
-                            color: '#6421ff'
-                        }}
-                    >
-                        Home
-                    </Link>                
+                    <NavLink to='/'>
+                        <Link
+                            href="#"
+                            padding='0 16px'
+                            fontSize='1.175rem'
+                            fontWeight='medium'
+                            textDecor='none'
+                            color='#FFF'
+                            transition=' color 0.3s'
+                            _hover={{
+                                color: '#6421ff'
+                            }}
+                        >
+                            Home
+                        </Link>
+                    </NavLink>                
                 </Flex>
             </Flex>
         </Flex>

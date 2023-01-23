@@ -1,84 +1,62 @@
-import { Box, Card, Image, Text, Wrap } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { Header } from "../../components/Header";
-import { ICharacter } from "../../interfaces/character.interface";
-import api from "../../services/api";
+import { Flex, Image, Link, Text } from "@chakra-ui/react";
+import { BsArrowRightShort } from 'react-icons/bs'
+import { NavLink } from 'react-router-dom'
 
 export function Home() {
-
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
-
-    useEffect(() => {
-        getCharacters();
-    }, [])
-
-    async function getCharacters() {
-        const response = await api.get('characters');
-        const data = response.data.data;
-        console.log(data)
-        setCharacters(data);
-    }
     return (
-        <Box
-            bg='gray.100'
+        <Flex
+            width='100%'
+            height='100vh'
+            backgroundImage='./img/hero-home.svg'
+            backgroundRepeat='no-repeat'
+            backgroundSize='cover'
         >
-            <Header />
-            <Box
-                width='1216px'
-                height='100vh'
-                margin='0 auto'
+            <Flex
+                width='600px'
+                flexDir='column'
+                justifyContent='center'
+                alignItems='center'
+                margin='auto'
             >
+                <Image src="./img/disney.svg"/>
                 <Text
-                    fontSize='3rem'
-                    fontWeight='bold'
-                    margin='40px 0'
-                    color='#040814'
+                    fontSize='1.25rem'
+                    fontWeight='normal'
+                    textAlign='center'
+                    color='#C0C0C0'
+                    mt='1.25rem'
                 >
-                    Personagens
+                    Encontre dados dos seus personagens favoritos da Disney
                 </Text>
-                <Wrap
-                    spacing='32px'
-                    align='center'
-                    width='100%'
-                >
-                    {characters.map((character, index) => (
-                        <Card
-                            borderRadius='8px'
-                            key={index}
-                        >
-                            <Box
-                                width='280px'
-                                height='280px'
-                                flexDirection='column'
-                                borderRadius='8px 8px 0 0'
-                            >
-                                <Image
-                                    src={character.imageUrl}
-                                    boxSize='full'
-                                    objectFit='cover'
-                                    borderRadius='8px 8px 0 0'    
-                                />
-                            </Box>
-                            <Box
-                                height='74px'
-                                padding='16px 20px'
-                            >
-                                <Text
-                                    fontSize='12'
-                                >
-                                    NOME
-                                </Text>
-                                <Text
-                                    fontSize='1rem'
-                                    fontWeight='medium'
-                                >
-                                    {character.name}
-                                </Text>
-                            </Box>
-                        </Card>
-                    ))}
-                </Wrap>
-            </Box>
-        </Box>
+                <NavLink to='/showlist' title="Disney">
+                    <Link
+                        display='flex'
+                        width='240px'
+                        height='56px'
+                        justifyContent='center'
+                        alignContent='center'
+                        background='#6421FF'
+                        borderRadius='2xl'
+                        alignItems='center'
+
+                        fontSize='1rem'
+                        fontWeight='medium'
+                        color='#FFF'
+                        mt='4.5rem'
+                        gap='10px'
+                        transition='0.3s'
+
+                        _hover={{
+                            background: '#551dda',
+                            gap: '16px'
+                            
+                        }}
+                    >
+                        EXPLORAR
+                        <BsArrowRightShort size='32px'/>
+                    </Link>
+                </NavLink>
+            </Flex>
+        </Flex>
     )
 }
