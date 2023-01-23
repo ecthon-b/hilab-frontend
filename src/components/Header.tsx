@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Link } from "@chakra-ui/react";
+import { Flex, Image, Link } from "@chakra-ui/react";
 import { NavLink } from 'react-router-dom'
 
 export function Header() {
