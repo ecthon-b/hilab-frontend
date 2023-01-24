@@ -8,7 +8,7 @@ import {
     DrawerCloseButton,
     Flex,
     DrawerHeader,
-    Link, } from "@chakra-ui/react";
+    Text, } from "@chakra-ui/react";
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { NavLink } from "react-router-dom";
 
@@ -47,16 +47,15 @@ export function Hamburguer() {
                             <NavLink
                                 to={"/"}
                             >
-                                <Link
+                                <Text
                                     fontWeight='medium'
                                     color='#040814'
                                     _hover={{
                                         color: '#6421ff'
                                     }}
-                                        
                                 >
                                     Home
-                                </Link>
+                                </Text>
                             </NavLink>
                         </Flex>
                     </DrawerBody>

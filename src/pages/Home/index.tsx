@@ -1,4 +1,4 @@
-import { Flex, Image, Link, Text } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import { BsArrowRightShort } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ export function Home() {
                 alignItems='center'
                 margin='auto'
             >
-                <Image src="./img/disney.svg"/>
+                <Image src="./img/disney.svg" alt="Logomarca da Disney" />
                 <Text
                     fontSize='1.25rem'
                     fontWeight='normal'
@@ -29,7 +29,7 @@ export function Home() {
                     Encontre dados dos seus personagens favoritos da Disney
                 </Text>
                 <NavLink to='/showlist' title="Disney">
-                    <Link
+                    <Text
                         display='flex'
                         width='240px'
                         height='56px'
@@ -54,7 +54,7 @@ export function Home() {
                     >
                         EXPLORAR
                         <BsArrowRightShort size='32px'/>
-                    </Link>
+                    </Text>
                 </NavLink>
             </Flex>
         </Flex>

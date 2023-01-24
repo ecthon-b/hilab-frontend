@@ -1,6 +1,5 @@
-import { Flex, Image, Link } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import { NavLink } from 'react-router-dom'
-import { Hamburguer } from "./Hamburguer";
 
 export function Header() {
     return (
@@ -25,8 +24,7 @@ export function Header() {
 
                 <Flex as='nav'>
                     <NavLink to='/'>
-                        <Link
-                            href="#"
+                        <Text
                             padding='0 16px'
                             fontSize='1.175rem'
                             fontWeight='medium'
@@ -38,7 +36,7 @@ export function Header() {
                             }}
                         >
                             Home
-                        </Link>
+                        </Text>
                     </NavLink>                
                 </Flex>
             </Flex>
