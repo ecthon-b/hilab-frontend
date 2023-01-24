@@ -10,14 +10,13 @@ import {
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton, 
     useDisclosure,
     Button,
     Flex,
     Divider} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
-import { ICharacter, IOneCharacter } from "../../interfaces/character.interface";
+import { ICharacter } from "../../interfaces/character.interface";
 import api from "../../services/api";
 
 export function ShowList() {
@@ -44,26 +43,25 @@ export function ShowList() {
 
     return (
         <Box
-            bg='gray.100'
+            bg='#040814'
         >
             <Header />
             <Box
-                width='1216px'
-                height='100vh'
+                width={{base: '100%', md:'100%', lg:'1216px'}}
+                height='auto'
                 margin='0 auto'
             >
                 <Text
-                    fontSize='3rem'
+                    fontSize={{base: '2rem', lg:'3rem'}}
                     fontWeight='bold'
-                    margin='40px 0'
-                    color='#040814'
+                    margin={{base: '20px 32px', md:'20px 32px', lg: '40px 0'}}
+                    color='#918f8f'
                 >
                     Personagens
                 </Text>
-                <Wrap
-                    spacing='32px'
-                    align='center'
-                    width='100%'
+                <Box
+                    display='flex'
+                    flexWrap='wrap'
                 >
                         {characters.map((character, index) => (
                             <Card
@@ -71,12 +69,16 @@ export function ShowList() {
                                 borderRadius='8px'
                                 key={index}
                                 cursor='pointer'
+                                width='270px'
+                                display='flex'
+                                margin='16px'
                             >
                                 <Box
-                                    width='280px'
-                                    height='280px'
+                                    width='270px'
+                                    height='270px'
+                                    padding='10px'
                                     flexDirection='column'
-                                    borderRadius='8px 8px 0 0'
+                                    borderRadius='6px 6px 0 0'
                                 >
                                     <Image
                                         src={character.imageUrl}
@@ -90,20 +92,23 @@ export function ShowList() {
                                     padding='16px 20px'
                                 >
                                     <Text
-                                        fontSize='12'
+                                        fontSize='10px'
+                                        color='#918f8f'
+                                        fontWeight='medium'
                                     >
                                         NOME
                                     </Text>
                                     <Text
                                         fontSize='1rem'
                                         fontWeight='medium'
+                                        color='#040814'
                                     >
                                         {character.name}
                                     </Text>
                                 </Box>
                             </Card>
                         ))}
-                </Wrap>
+                </Box>
             </Box>
 
             <Modal
