@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { ICharacter } from "../../interfaces/character.interface";
 import api from "../../services/api";
+import '../../styles/glassCard.css'
 
 export function ShowList() {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
@@ -43,6 +44,8 @@ export function ShowList() {
 
     return (
         <Box
+            width='100%'
+            height='auto'
             bg='#040814'
         >
             <Header />
@@ -72,6 +75,7 @@ export function ShowList() {
                                 width='270px'
                                 display='flex'
                                 margin='16px'
+                                className="glass"
                             >
                                 <Box
                                     width='270px'
@@ -147,7 +151,6 @@ export function ShowList() {
                         <Flex
                             width='100%'
                             height='350px'
-                            // bg='red'
                             direction='column'
                             mt='40px'
                             overflow='auto'
