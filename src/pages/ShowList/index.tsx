@@ -17,12 +17,13 @@ import {
     Divider} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
-import { ICharacter } from "../../interfaces/character.interface";
+import { ICharacter, IOneCharacter } from "../../interfaces/character.interface";
 import api from "../../services/api";
 
 export function ShowList() {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [oneCharacter, setOneCharacter] = useState<ICharacter>();
 
     useEffect(() => {
         getCharacters();
@@ -33,6 +34,12 @@ export function ShowList() {
         const data = response.data.data;
         console.log(data)
         setCharacters(data);
+    }
+
+    async function getOneCharacter( id: number) {
+        const character = await api.get(`characters/${id}`);
+        setOneCharacter(character.data)
+        onOpen(); 
     }
 
     return (
@@ -60,7 +67,7 @@ export function ShowList() {
                 >
                         {characters.map((character, index) => (
                             <Card
-                                onClick={onOpen}
+                                onClick={() => getOneCharacter(character._id)}
                                 borderRadius='8px'
                                 key={index}
                                 cursor='pointer'
@@ -119,7 +126,7 @@ export function ShowList() {
                         alignItems='center'
                     >
                         <Image
-                            src="https://github.com/ecthon.png"
+                            src={oneCharacter?.imageUrl}
                             width='100px'
                             height='100px'
                             borderRadius='50px'
@@ -129,7 +136,7 @@ export function ShowList() {
                             fontWeight='medium'
                             mt='1rem'
                         >
-                            Nome do Personagem
+                            {oneCharacter?.name}
                         </Text>
 
                         <Flex
@@ -142,10 +149,19 @@ export function ShowList() {
                         >
                             <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>PRAGRAMA(S)</Text>
                             <Divider />
+                            {oneCharacter?.tvShows.map( (item, index) => (
+                                <ul key={index}><p>{item}</p></ul>
+                            ))}
                             <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>SHOW(S)</Text>
                             <Divider />
+                            {oneCharacter?.shortFilms.map((item, index) => (
+                                <ul key={index}><p>{item}</p></ul>
+                            ))}
                             <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>FILME(S)</Text>
                             <Divider />
+                            {oneCharacter?.films.map((item, index) => (
+                                <ul key={index}><p>{item}</p></ul>
+                            ))}
                         </Flex>
                     </ModalBody>
 
