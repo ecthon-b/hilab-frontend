@@ -8,11 +8,12 @@ export function Home() {
             width='100%'
             height='100vh'
             backgroundImage='./img/hero-home.svg'
+            backgroundPosition={{base: 'center', lg: 'initial'}}
             backgroundRepeat='no-repeat'
             backgroundSize='cover'
         >
             <Flex
-                width='600px'
+                width={{base: '500px', lg: '600px'}}
                 flexDir='column'
                 justifyContent='center'
                 alignItems='center'
