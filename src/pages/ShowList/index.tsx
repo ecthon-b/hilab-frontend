@@ -12,7 +12,9 @@ import {
     ModalBody,
     ModalCloseButton, 
     useDisclosure,
-    Button} from "@chakra-ui/react";
+    Button,
+    Flex,
+    Divider} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { ICharacter } from "../../interfaces/character.interface";
@@ -97,13 +99,54 @@ export function ShowList() {
                 </Wrap>
             </Box>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Título</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <Text>Body do modal</Text>
+            <Modal
+                size='400px'
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <ModalOverlay  />
+                <ModalContent
+                display='flex'
+                    width='600px'
+                    height='700px'
+                >
+                    {/* <ModalCloseButton /> */}
+                    <ModalHeader></ModalHeader>
+                    <ModalBody
+                        display='flex'
+                        flexDir='column'
+                        w='100%'
+                        alignItems='center'
+                    >
+                        <Image
+                            src="https://github.com/ecthon.png"
+                            width='100px'
+                            height='100px'
+                            borderRadius='50px'
+                        />
+                        <Text
+                            fontSize='1.25rem'
+                            fontWeight='medium'
+                            mt='1rem'
+                        >
+                            Nome do Personagem
+                        </Text>
+
+                        <Flex
+                            width='100%'
+                            height='350px'
+                            // bg='red'
+                            direction='column'
+                            mt='40px'
+                            overflow='auto'
+                        >
+                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>PRAGRAMA(S)</Text>
+                            <Divider />
+                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>SHOW(S)</Text>
+                            <Divider />
+                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>FILME(S)</Text>
+                            <Divider />
+                        </Flex>
                     </ModalBody>
 
                     <ModalFooter>
