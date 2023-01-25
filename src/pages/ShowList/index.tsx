@@ -15,6 +15,7 @@ import {
     Flex,
     Divider} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ICharacter } from "../../interfaces/character.interface";
 import api from "../../services/api";
@@ -181,6 +182,7 @@ export function ShowList() {
                 </ModalContent>
 
             </Modal>
+            <Footer />
         </Box>
     )
 }
