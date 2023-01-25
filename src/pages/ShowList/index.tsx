@@ -1,9 +1,7 @@
 import {
     Box,
-    Card,
     Image,
     Text,
-    Wrap,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -14,8 +12,7 @@ import {
     Button,
     Flex,
     Divider,
-    Stack,
-    WrapItem} from "@chakra-ui/react";
+    Stack} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
@@ -46,25 +43,6 @@ export function ShowList() {
     }
 
     return (
-        // <Box
-        //     width='100%'
-        //     height='auto'
-        //     bg='#040814'
-        // >
-        //     <Header />
-        //     <Box
-        //         width={{base: '100%', md:'100%', lg:'1216px'}}
-        //         height='auto'
-        //         margin='0 auto'
-        //     >
-        //         <Text
-        //             fontSize={{base: '2rem', lg:'3rem'}}
-        //             fontWeight='bold'
-        //             margin={{base: '20px 32px', md:'20px 32px', lg: '40px 0'}}
-        //             color='#918f8f'
-        //         >
-        //             Personagens
-        //         </Text>
         <Box
             background='#040814'
         >
@@ -95,6 +73,7 @@ export function ShowList() {
                 >
                     {characters.map((character) => (
                     <Flex
+                        onClick={()=> getOneCharacter(character._id)}
                         key={character._id}
                         direction='column'
                         width='280px'
@@ -129,76 +108,73 @@ export function ShowList() {
 
                 </Flex>
             <Footer />
+
+            <Modal
+                size='400px'
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <ModalOverlay  />
+                <ModalContent
+                display='flex'
+                    width='600px'
+                    height='700px'
+                >
+                    {/* <ModalCloseButton /> */}
+                    <ModalHeader></ModalHeader>
+                    <ModalBody
+                        display='flex'
+                        flexDir='column'
+                        w='100%'
+                        alignItems='center'
+                    >
+                        <Image
+                            src={oneCharacter?.imageUrl}
+                            width='100px'
+                            height='100px'
+                            borderRadius='50px'
+                        />
+                        <Text
+                            fontSize='1.25rem'
+                            fontWeight='medium'
+                            mt='1rem'
+                        >
+                            {oneCharacter?.name}
+                        </Text>
+
+                        <Flex
+                            width='100%'
+                            height='350px'
+                            direction='column'
+                            mt='40px'
+                            overflow='auto'
+                        >
+                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>PRAGRAMA(S)</Text>
+                            <Divider />
+                            {oneCharacter?.tvShows.map( (item, index) => (
+                                <ul key={index}><p>{item}</p></ul>
+                            ))}
+                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>SHOW(S)</Text>
+                            <Divider />
+                            {oneCharacter?.shortFilms.map((item, index) => (
+                                <ul key={index}><p>{item}</p></ul>
+                            ))}
+                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>FILME(S)</Text>
+                            <Divider />
+                            {oneCharacter?.films.map((item, index) => (
+                                <ul key={index}><p>{item}</p></ul>
+                            ))}
+                        </Flex>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' onClick={onClose}>
+                            Fechar
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+
+            </Modal>
         </Box>    
-        //     </Box>
-
-        //     <Modal
-        //         size='400px'
-        //         isOpen={isOpen}
-        //         onClose={onClose}
-        //     >
-        //         <ModalOverlay  />
-        //         <ModalContent
-        //         display='flex'
-        //             width='600px'
-        //             height='700px'
-        //         >
-        //             {/* <ModalCloseButton /> */}
-        //             <ModalHeader></ModalHeader>
-        //             <ModalBody
-        //                 display='flex'
-        //                 flexDir='column'
-        //                 w='100%'
-        //                 alignItems='center'
-        //             >
-        //                 <Image
-        //                     src={oneCharacter?.imageUrl}
-        //                     width='100px'
-        //                     height='100px'
-        //                     borderRadius='50px'
-        //                 />
-        //                 <Text
-        //                     fontSize='1.25rem'
-        //                     fontWeight='medium'
-        //                     mt='1rem'
-        //                 >
-        //                     {oneCharacter?.name}
-        //                 </Text>
-
-        //                 <Flex
-        //                     width='100%'
-        //                     height='350px'
-        //                     direction='column'
-        //                     mt='40px'
-        //                     overflow='auto'
-        //                 >
-        //                     <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>PRAGRAMA(S)</Text>
-        //                     <Divider />
-        //                     {oneCharacter?.tvShows.map( (item, index) => (
-        //                         <ul key={index}><p>{item}</p></ul>
-        //                     ))}
-        //                     <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>SHOW(S)</Text>
-        //                     <Divider />
-        //                     {oneCharacter?.shortFilms.map((item, index) => (
-        //                         <ul key={index}><p>{item}</p></ul>
-        //                     ))}
-        //                     <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>FILME(S)</Text>
-        //                     <Divider />
-        //                     {oneCharacter?.films.map((item, index) => (
-        //                         <ul key={index}><p>{item}</p></ul>
-        //                     ))}
-        //                 </Flex>
-        //             </ModalBody>
-
-        //             <ModalFooter>
-        //                 <Button colorScheme='blue' onClick={onClose}>
-        //                     Fechar
-        //                 </Button>
-        //             </ModalFooter>
-        //         </ModalContent>
-
-        //     </Modal>
-        //     <Footer />
-        // </Box>
     )
 }
