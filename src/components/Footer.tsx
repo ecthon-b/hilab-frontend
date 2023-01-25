@@ -1,5 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Flex, Link, Text, textDecoration } from "@chakra-ui/react";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -21,12 +20,19 @@ export function Footer() {
 
             <Text
                 color='#454953'
-                ml='2px'
+                ml='4px'
+                textDecor='none'
                 _hover={{
-                    color: '#6421ff'
+                    color: '#6421ff',
                 }}
             >
-                <Link to='https://www.linkedin.com/in/ecthon/' target='_blank'> @ecthon</Link>
+                <Link
+                    textDecor='none'
+                    _hover={{ textDecoration: 'none'}}
+                    href='https://www.linkedin.com/in/ecthon/'
+                    target='_blank'>
+                        @ecthon
+                    </Link>
             </Text>
         </Flex>
     )
