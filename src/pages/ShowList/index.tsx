@@ -18,6 +18,7 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ICharacter, IPageProps } from "../../interfaces/character.interface";
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import { AiOutlineInfoCircle } from 'react-icons/ai'
 
 import api from "../../services/api";
 import '../../styles/glassCard.css'
@@ -79,6 +80,7 @@ export function ShowList() {
             >
                 {characters.map((character) => (
                 <Flex
+                    className="glass"
                     onClick={()=> getOneCharacter(character._id)}
                     key={character._id}
                     direction='column'
@@ -87,6 +89,7 @@ export function ShowList() {
                     align='center'
                     borderRadius='8px'
                     bg='#fff'
+                    cursor='pointer'
                 >
                     <Box
                         width='100%'
@@ -106,8 +109,11 @@ export function ShowList() {
                         width='100%'
                         padding='16px 10px'
                     >
-                        <Text fontSize='12px'>Nome</Text>
-                        <Text fontSize='1rem' fontWeight='medium'>{character.name}</Text>
+                            <Text fontSize='12px'>Nome</Text>
+                        <Flex justifyContent='space-between'>
+                            <Text fontSize='1rem' fontWeight='medium'>{character.name}</Text>
+                            <AiOutlineInfoCircle color='#90959a' size='20' />
+                        </Flex>
                     </Stack>
                 </Flex>
                 ))}
@@ -164,8 +170,8 @@ export function ShowList() {
                 <ModalOverlay  />
                 <ModalContent
                 display='flex'
-                    width='600px'
-                    height='700px'
+                    width='500px'
+                    height='660px'
                 >
                     {/* <ModalCloseButton /> */}
                     <ModalHeader></ModalHeader>
