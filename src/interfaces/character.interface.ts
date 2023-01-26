@@ -16,9 +16,9 @@ export interface ICharacter {
 alignment:	string;
 }
 
-export interface IOneCharacter {
-    _id: number,
-    films: string[];
-    tvShows: string[];
-    shortFilms: string[];
+export interface IPageProps {
+    count: number;
+    totalPages: number;
+    previousPage?: string;
+    nextPage: string;
 }

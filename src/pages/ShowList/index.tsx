@@ -16,24 +16,30 @@ import {
 import { useEffect, useState } from "react";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
-import { ICharacter } from "../../interfaces/character.interface";
+import { ICharacter, IPageProps } from "../../interfaces/character.interface";
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+
 import api from "../../services/api";
 import '../../styles/glassCard.css'
 
 export function ShowList() {
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const [pageData, setPageData] = useState<IPageProps>();
+    const [ count, setCount ] = useState(1);
     const [oneCharacter, setOneCharacter] = useState<ICharacter>();
 
     useEffect(() => {
         getCharacters();
-    }, [])
+    }, [count])
 
     async function getCharacters() {
-        const response = await api.get('characters');
+        const response = await api.get(`characters/?page=${count}`);
         const data = response.data.data;
-        console.log(data)
+        const page = response.data
         setCharacters(data);
+        setPageData(page);
     }
 
     async function getOneCharacter( id: number) {
@@ -46,70 +52,111 @@ export function ShowList() {
         <Box
             background='#040814'
         >
-        <Header />
-        <Flex
-            maxWidth={{base:'90%', md:'90%', lg:'1216px'}}
-            margin='0 auto'
-        >
-            <Text
-                fontSize='2rem'
-                fontWeight='medium'
-                color='#c3c3c3'
-                margin='32px 0'
+            <Header />
+            <Flex
+                maxWidth={{base:'90%', md:'90%', lg:'1216px'}}
+                margin='0 auto'
             >
-                Personagens
-            </Text>
-        </Flex>
+                <Text
+                    fontSize='2rem'
+                    fontWeight='medium'
+                    color='#c3c3c3'
+                    margin='32px 0'
+                >
+                    Personagens
+                </Text>
+            </Flex>
         
 
+            <Flex
+                gap='32px'
+                flexWrap='wrap'
+                maxWidth='1216px'
+                height='auto'
+                margin='0 auto'
+                mb='32px'
+                justifyContent={{base: 'center', md: 'center', lg: 'initial'}}
+            >
+                {characters.map((character) => (
                 <Flex
-                    gap='32px'
-                    flexWrap='wrap'
-                    maxWidth='1216px'
+                    onClick={()=> getOneCharacter(character._id)}
+                    key={character._id}
+                    direction='column'
+                    width='280px'
                     height='auto'
-                    margin='0 auto'
-                    mb='100px'
-                    justifyContent={{base: 'center', md: 'center', lg: 'initial'}}
+                    align='center'
+                    borderRadius='8px'
+                    bg='#fff'
                 >
-                    {characters.map((character) => (
-                    <Flex
-                        onClick={()=> getOneCharacter(character._id)}
-                        key={character._id}
-                        direction='column'
-                        width='280px'
-                        height='auto'
-                        align='center'
-                        borderRadius='8px'
-                        bg='#fff'
+                    <Box
+                        width='100%'
+                        height='270px'
+                        padding='10px'
                     >
-                        <Box
-                            width='100%'
-                            height='270px'
-                            padding='10px'
-                        >
-                            <Image
-                                src={character.imageUrl}
-                                boxSize='full'
-                                objectFit='cover'
-                                borderRadius='6px 6px 0 0'
-                            />
-                        </Box>
+                        <Image
+                            src={character.imageUrl}
+                            boxSize='full'
+                            objectFit='cover'
+                            borderRadius='6px 6px 0 0'
+                        />
+                    </Box>
 
-                        <Stack
-                            spacing='2px'
-                            width='100%'
-                            padding='16px 10px'
-                        >
-                            <Text fontSize='12px'>Nome</Text>
-                            <Text fontSize='1rem' fontWeight='medium'>{character.name}</Text>
-                        </Stack>
-                    </Flex>
-                    ))}
-
+                    <Stack
+                        spacing='2px'
+                        width='100%'
+                        padding='16px 10px'
+                    >
+                        <Text fontSize='12px'>Nome</Text>
+                        <Text fontSize='1rem' fontWeight='medium'>{character.name}</Text>
+                    </Stack>
                 </Flex>
+                ))}
+            </Flex>
+
+            <Flex
+                maxWidth='1216px'
+                margin='0 auto'
+                align='center'
+                justifyContent='center'
+            >
+
+                <Button
+                    isDisabled={count === 1}
+                    background='transparent'
+                    border='1px solid transparent'
+                    color='#491faa'
+                    mr='4px'
+                    _hover={{
+                        background: 'transparent',
+                        border: '1px solid #1b202e',
+                        color: '#6421ff'
+                    }}
+                    onClick={() => setCount(count - 1)}
+                >
+                    <MdNavigateBefore size={24} /><Text fontWeight='normal'>Voltar</Text>
+                </Button>
+
+                <Text color='#3b3e47' padding='16px 32px'>{count}/{pageData?.totalPages}</Text>
+                
+                <Button
+                    isDisabled={count === pageData?.totalPages}
+                    background='transparent'
+                    border='1px solid transparent'
+                    color='#491faa'
+                    _hover={{
+                        background: 'transparent',
+                        border: '1px solid #1b202e',
+                        color: '#6421ff'
+                    }}
+                    onClick={() => setCount(count + 1)}
+                >
+                    <Text fontWeight='normal'>Próximo</Text><MdNavigateNext size={24} />
+                </Button>
+            </Flex>
+            
             <Footer />
 
-            <Modal
+        <Modal
                 size='400px'
                 isOpen={isOpen}
                 onClose={onClose}
@@ -174,7 +221,7 @@ export function ShowList() {
                     </ModalFooter>
                 </ModalContent>
 
-            </Modal>
+        </Modal>
         </Box>    
     )
 }
