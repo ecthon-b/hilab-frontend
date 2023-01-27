@@ -179,69 +179,76 @@ export function ShowList() {
             <Footer />
 
         <Modal
-                size='400px'
-                isOpen={isOpen}
-                onClose={onClose}
+            size='400px'
+            isOpen={isOpen}
+            onClose={onClose}
+        >
+            <ModalOverlay  />
+            <ModalContent
+            display='flex'
+                width={{base:'90%', md:'90%', lg:'500px'}}
+                height={{base:'auto', md: 'auto', lg: '660px'}}
             >
-                <ModalOverlay  />
-                <ModalContent
-                display='flex'
-                    width='500px'
-                    height='660px'
+                {/* <ModalCloseButton /> */}
+                <ModalHeader></ModalHeader>
+                <ModalBody
+                    display='flex'
+                    flexDir='column'
+                    w='100%'
+                    alignItems='center'
                 >
-                    {/* <ModalCloseButton /> */}
-                    <ModalHeader></ModalHeader>
-                    <ModalBody
-                        display='flex'
-                        flexDir='column'
-                        w='100%'
-                        alignItems='center'
+                    <Image
+                        src={oneCharacter?.imageUrl}
+                        width='100px'
+                        height='100px'
+                        borderRadius='50px'
+                        border='4px solid #f6f5fd'
+                    />
+                    <Text
+                        fontSize={{base: '1rem', md:'1rem', lg:'1.25rem'}}
+                        fontWeight='medium'
+                        padding='2px 16px'
+                        borderRadius='50px'
+                            bg='#f6f5fd'
+                        mt='1rem'
                     >
-                        <Image
-                            src={oneCharacter?.imageUrl}
-                            width='100px'
-                            height='100px'
-                            borderRadius='50px'
-                        />
-                        <Text
-                            fontSize='1.25rem'
-                            fontWeight='medium'
-                            mt='1rem'
-                        >
-                            {oneCharacter?.name}
-                        </Text>
+                        {oneCharacter?.name}
+                    </Text>
 
-                        <Flex
-                            width='100%'
-                            height='350px'
-                            direction='column'
-                            mt='40px'
-                            overflow='auto'
-                        >
-                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>PRAGRAMA(S)</Text>
-                            <Divider />
-                            {oneCharacter?.tvShows.map( (item, index) => (
-                                <ul key={index}><p>{item}</p></ul>
-                            ))}
-                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>SHOW(S)</Text>
-                            <Divider />
-                            {oneCharacter?.shortFilms.map((item, index) => (
-                                <ul key={index}><p>{item}</p></ul>
-                            ))}
-                            <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>FILME(S)</Text>
-                            <Divider />
-                            {oneCharacter?.films.map((item, index) => (
-                                <ul key={index}><p>{item}</p></ul>
-                            ))}
-                        </Flex>
-                    </ModalBody>
+                    <Flex
+                        width='100%'
+                        height={{base: 'auto', md: 'auto',lg: '350px'}}
+                        direction='column'
+                        mt='40px'
+                        overflow='auto'
+                        bg='#f6f5fd'
+                        padding='10px'
+                        borderRadius='8px'
+                    >
+                        <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>PRAGRAMA(S) DE TV</Text>
+                        <Divider mb={{base: '8px', md:'8px', lg:'16px'}}/>
+                        {oneCharacter?.tvShows.map( (item, index) => (
+                            <ul key={index}><p>{item}</p></ul>
+                        ))}
+                        <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>SHOW(S)</Text>
+                            <Divider mb={{base: '8px', md:'8px', lg:'16px'}} />
+                        {oneCharacter?.shortFilms.map((item, index) => (
+                            <ul key={index}><p>{item}</p></ul>
+                        ))}
+                        <Text fontSize='0.75rem' fontWeight='medium' color='#838287'>FILME(S)</Text>
+                            <Divider mb={{base: '8px', md:'8px', lg:'16px'}} />
+                        {oneCharacter?.films.map((item, index) => (
+                            <ul key={index}><p>{item}</p></ul>
+                        ))}
+                    </Flex>
+                </ModalBody>
 
-                    <ModalFooter>
-                        <Button colorScheme='blue' onClick={onClose}>
-                            Fechar
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
+                <ModalFooter>
+                    <Button colorScheme='blue' onClick={onClose}>
+                        Fechar
+                    </Button>
+                </ModalFooter>
+            </ModalContent>
 
         </Modal>
         </Box>    
