@@ -49,6 +49,22 @@ export function ShowList() {
         onOpen(); 
     }
 
+    function nextPage() {
+        setCount(count + 1)
+        window.scrollTo({
+            top: 0,
+            behavior:'smooth'
+        })
+    }
+
+    function previousPage() {
+        setCount(count - 1)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
     return (
         <Box
             background='#040814'
@@ -137,7 +153,7 @@ export function ShowList() {
                         border: '1px solid #1b202e',
                         color: '#6421ff'
                     }}
-                    onClick={() => setCount(count - 1)}
+                    onClick={previousPage}
                 >
                     <MdNavigateBefore size={24} /><Text fontWeight='normal'>Voltar</Text>
                 </Button>
@@ -154,7 +170,7 @@ export function ShowList() {
                         border: '1px solid #1b202e',
                         color: '#6421ff'
                     }}
-                    onClick={() => setCount(count + 1)}
+                    onClick={nextPage}
                 >
                     <Text fontWeight='normal'>Próximo</Text><MdNavigateNext size={24} />
                 </Button>
